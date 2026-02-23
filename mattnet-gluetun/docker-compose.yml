@@ -10,7 +10,7 @@ services:
     container_name: gluetun_app_proxy_1
   server:
     image: >-
-      qdm12/gluetun:latest
+      qmcgaw/gluetun
     container_name: gluetun_server_1
     cap_add:
       - NET_ADMIN
