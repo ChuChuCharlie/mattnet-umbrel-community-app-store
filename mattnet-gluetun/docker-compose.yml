@@ -16,6 +16,9 @@ services:
       - NET_ADMIN
     devices:
       - /dev/net/tun:/dev/net/tun
+    ports:
+      - 3000:8080/tcp
+      - 3000:8080/udp
     environment:
       - PUID=1000
       - PGID=1000
