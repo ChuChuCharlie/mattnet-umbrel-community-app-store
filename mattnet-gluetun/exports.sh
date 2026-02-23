@@ -1,0 +1,7 @@
+export VPN_SERVICE_PROVIDER="private internet access"
+export VPN_TYPE="wireguard"
+export WIREGUARD_PRIVATE_KEY="your wireguard private key"
+export WIREGUARD_PRESHARED_KEY="your wireguard preshared key"
+export WIREGUARD_ADDRESSES="your wireguard address"
+export WIREGUARD_MTU="your wireguard mtu"
+export SERVER_COUNTRIES="your server countries"

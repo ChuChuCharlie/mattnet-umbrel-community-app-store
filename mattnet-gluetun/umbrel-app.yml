@@ -1,0 +1,48 @@
+manifestVersion: 1
+id: mattnet-gluetun
+name: Gluetun
+tagline: Lightweight swiss-army-knife-like VPN client to multiple VPN service providers
+icon: https://svgur.com/i/mvA.svg
+category: Network
+version: "1.0.0"
+port: 4000
+description: >-
+  
+    Based on Alpine 3.22 for a small Docker image of 41.1MB
+    Supports: AirVPN, Cyberghost, ExpressVPN, FastestVPN, Giganews, HideMyAss, IPVanish, IVPN, Mullvad (Wireguard only), NordVPN, Perfect Privacy, Privado, Private Internet Access, PrivateVPN, ProtonVPN, PureVPN, SlickVPN, Surfshark, TorGuard, VPNSecure.me, VPNUnlimited, Vyprvpn, Windscribe servers
+    Supports OpenVPN for all providers listed
+    Supports Wireguard both kernelspace and userspace
+        For AirVPN, FastestVPN, Ivpn, Mullvad, NordVPN, Perfect privacy, ProtonVPN, Surfshark and Windscribe
+        For Cyberghost, Private Internet Access, PrivateVPN, PureVPN, Torguard, VPN Unlimited and VyprVPN using the custom provider
+        For custom Wireguard configurations using the custom provider
+        More in progress, see #134
+    DNS over TLS baked in with service provider(s) of your choice
+    DNS fine blocking of malicious/ads/surveillance hostnames and IP addresses, with live update every 24 hours
+    Choose the vpn network protocol, udp or tcp
+    Built in firewall kill switch to allow traffic only with needed the VPN servers and LAN devices
+    Built in Shadowsocks proxy server (protocol based on SOCKS5 with an encryption layer, tunnels TCP+UDP)
+    Built in HTTP proxy (tunnels HTTP and HTTPS through TCP)
+    Connect other containers to it
+    Connect LAN devices to it
+    Compatible with amd64, i686 (32 bit), ARM 64 bit, ARM 32 bit v6 and v7, and even ppc64le 🎆
+    Custom VPN server side port forwarding for Perfect Privacy, Private Internet Access, PrivateVPN and ProtonVPN
+    Possibility of split horizon DNS by selecting multiple DNS over TLS providers
+    Can work as a Kubernetes sidecar container, thanks @rorph
+
+
+developer: qdm12
+website: https://github.com/qdm12
+submitter: Mattnet
+submission: https://github.com/ChuChuCharlie/mattnet-umbrel-community-app-store/mattnewt-gluetun
+repo: https://github.com/ChuChuCharlie/mattnet-umbrel-community-app-store
+support: https://github.com/ChuChuCharlie/mattnet-umbrel-community-app-store/issues
+gallery:
+  - https://i.imgur.com/yyVG0Jb.jpeg
+  - https://i.imgur.com/yyVG0Jb.jpeg
+  - https://i.imgur.com/yyVG0Jb.jpeg
+releaseNotes: >-
+  Add what's new in the latest version of your app here.
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
