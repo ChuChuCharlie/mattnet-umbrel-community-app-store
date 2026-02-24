@@ -2,7 +2,7 @@ manifestVersion: 1
 id: mattnet-gluetun
 name: Gluetun
 tagline: Lightweight swiss-army-knife-like VPN client to multiple VPN service providers
-icon: https://github.com/ChuChuCharlie/mattnet-umbrel-community-app-store/mattnet-gluetun/gluetun-icon.svg
+icon: https://github.com/ChuChuCharlie/mattnet-umbrel-community-app-store/blob/be6e50dadd9005200a2d8b5639cf8a28bc8a366c/mattnet-gluetun/gluetun-icon.svg
 category: Network
 version: "1.0.1"
 port: 4000
