@@ -17,26 +17,22 @@ Edit the docker-compose.yml file. Check that APP_PORT doesn't overlap with anyth
 If you want to access your tunnelled app after it's been VPN'ed, under ports: add port redirects as required
 E.g. if your app needs inbound TCP/UDP 8080, TCP 80 and TCP 443, you'll need 3 variables in exports.sh:
 ```
-    export GLUETUN_TCP_PORT_1="3000"
-    export GLUETUN_UDP_PORT_1="3000"
-    export APP_TCP_PORT_1="8080"
-    export APP_UDP_PORT_1="8080"
-    export GLUETUN_TCP_PORT_2="3001"
-    export APP_TCP_PORT_2="80"
-    export GLUETUN_TCP_PORT_3="3002"
-    export APP_TCP_PORT_3="443"
+    export GLUETUN_TCP_PORT_1="3000:8080/tcp"
+    export GLUETUN_UDP_PORT_1="3000:8080/udp"
+    export GLUETUN_TCP_PORT_2="3001/80"
+    export GLUETUN_TCP_PORT_3="3002/443"
 ```
 And then in docker-compose.yml:
 ```
     ports:
-      - ${GLUETUN_TCP_PORT_1}:${APP_TCP_PORT_1}/tcp
-      - ${GLUETUN_UDP_PORT_1}:${APP_UDP_PORT_1}/udp
-      - ${GLUETUN_TCP_PORT_2}:${APP_TCP_PORT_2}/tcp
-      - ${GLUETUN_TCP_PORT_3}:${APP_TCP_PORT_3}/tcp
+      - ${GLUETUN_TCP_PORT_1}
+      - ${GLUETUN_UDP_PORT_1}
+      - ${GLUETUN_TCP_PORT_2}
+      - ${GLUETUN_TCP_PORT_3}
 ```
 Restart the Gluetun app by right clicking it (or, open the terminal and run 'umbreld client apps.restart.mutate --appId mattnet-gluetun')
 
-You now need to tell the app yoou want to run through VPN to use the Gluetun container. This means editing the docker-compose.yml FOR THAT APP and adding this line
+You now need to tell the app you want to run through VPN to use the Gluetun container. This means editing the docker-compose.yml FOR THAT APP and adding this line
 ```
     server:
       ...
@@ -50,10 +46,8 @@ This is my config for how I set up qBittorrent, which seems to be working
 exports.sh
 
 ```
-export GLUETUN_TCP_PORT_1="3000"
-export GLUETUN_UDP_PORT_1="3000"
-export APP_TCP_PORT_1="8080"
-export APP_UDP_PORT_1="8080"
+export GLUETUN_TCP_PORT_1="3000:8080/tcp"
+export GLUETUN_UDP_PORT_1="3000:8080/udp"
 
 export VPN_SERVICE_PROVIDER="airvpn"
 export VPN_TYPE="wireguard"
@@ -96,8 +90,8 @@ services:
     devices:
       - /dev/net/tun:/dev/net/tun
     ports:
-      - ${GLUETUN_TCP_PORT_1}:${APP_TCP_PORT_1}/tcp
-      - ${GLUETUN_UDP_PORT_1}:${APP_UDP_PORT_1}/udp
+      - ${GLUETUN_TCP_PORT_1}
+      - ${GLUETUN_UDP_PORT_1}
     environment:
       - PUID=1000
       - PGID=1000

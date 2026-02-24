@@ -16,10 +16,9 @@ services:
     devices:
       - /dev/net/tun:/dev/net/tun
     ports:
-      - ${GLUETUN_TCP_PORT_1}:${APP_TCP_PORT_1}/tcp
-      - ${GLUETUN_UDP_PORT_1}:${APP_UDP_PORT_1}/udp
-      - ${GLUETUN_TCP_PORT_2}:${APP_TCP_PORT_2}/tcp
-      - ${GLUETUN_UDP_PORT_2}:${APP_UDP_PORT_2}/udp
+      - ${GLUETUN_TCP_PORT_1}
+      - ${GLUETUN_UDP_PORT_1}
+      - ${GLUETUN_TCP_PORT_2}
     environment:
       - PUID=1000
       - PGID=1000

@@ -2,14 +2,9 @@
 
 #To access the tunnelled application, you need to direct a port via Gluetun to the app.
 #For example, qBittorrent's web UI runs on port 8080 by default, so you would set APP_TCP_PORT to 8080 and GLUETUN_TCP_PORT to the port you want to access qBittorrent on (e.g. 4000). Then you would access the qBittorrent web UI at http://umbrel-ip:4000.
-export GLUETUN_TCP_PORT_1="your gluetun tcp port, example: 4000"
-export GLUETUN_UDP_PORT_1="your gluetun udp port. example: 4000"
-export APP_TCP_PORT_1="your app tcp port, example: 8080 for qBittorrent's web UI"
-export APP_UDP_PORT_1="your app udp port, example: 8080 for qBittorrent's web UI"
-export GLUETUN_TCP_PORT_2="your gluetun tcp port"
-export GLUETUN_UDP_PORT_2="your gluetun udp port"
-export APP_TCP_PORT_2="your app tcp port"
-export APP_UDP_PORT_2="your app udp port"
+export GLUETUN_TCP_PORT_1="your gluetun tcp port:app TCP port, example: 3000:8080/tcp"
+export GLUETUN_UDP_PORT_1="your gluetun udp port:app UDP port, example: 3000:8080/udp"
+export GLUETUN_TCP_PORT_2="your gluetun tcp port:app TCP port, example: 3001:8094/tcp"
 #etc, etc for as many ports as you need to direct through the tunnelled application. Also update the docker-compose.yml file to include the ports you want to direct through the tunnelled application.
 
 export VPN_SERVICE_PROVIDER="airvpn, mullvad, nordvpn etc"
