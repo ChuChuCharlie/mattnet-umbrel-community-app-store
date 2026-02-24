@@ -3,7 +3,7 @@ id: mattnet-handbrake
 name: HandBrake
 tagline: >-
   HandBrake is a tool for converting video from nearly any format to a selection of modern, widely supported codecs. It is open source and available for Linux, Mac, and Windows.
-icon: https://github.com/ChuChuCharlie/mattnet-umbrel-community-app-store/blob/be6e50dadd9005200a2d8b5639cf8a28bc8a366c/mattnet-handbrake/handbrake-icon.svg
+icon: https://github.com/ChuChuCharlie/mattnet-umbrel-community-app-store/blob/c7987a46c59d107faa5ced17146ff4f2e86fca55/mattnet-handbrake/handbrake-icon.png
 category: Media
 version: "1.0.0"
 port: 5800
