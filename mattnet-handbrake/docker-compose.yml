@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+
+  app_proxy:
+    environment:
+      APP_HOST: handbrake_server_1
+      APP_PORT: 5800
+    container_name: handbrake_app_proxy_1
+  server:
+    image: >-
+      jlesage/handbrake
+    container_name: handbrake_server_1
+    volumes:
+      - ${APP_DATA_DIR}/data/config:/config:rw
+      - ${APP_DATA_DIR}/data/storage:/storage:ro
+      - ${APP_DATA_DIR}/data/watch:/watch:rw
+      - ${APP_DATA_DIR}/data/output:/output:rw
+      - ${APP_DATA_DIR}/data/trash:/trash:rw
+    environment:

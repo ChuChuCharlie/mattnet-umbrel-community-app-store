@@ -1,0 +1,28 @@
+manifestVersion: 1
+id: mattnet-handbrake
+name: HandBrake
+tagline: >-
+  HandBrake is a tool for converting video from nearly any format to a selection of modern, widely supported codecs. It is open source and available for Linux, Mac, and Windows.
+icon: https://github.com/ChuChuCharlie/mattnet-umbrel-community-app-store/blob/be6e50dadd9005200a2d8b5639cf8a28bc8a366c/mattnet-handbrake/handbrake-icon.svg
+category: Media
+version: "1.0.0"
+port: 5800
+description: >-
+  
+  HandBrake is a tool for converting video from nearly any format to a selection of modern, widely supported codecs. It is open source and available for Linux, Mac, and Windows.
+
+  This is based on the Docker image from https://github.com/jlesage/docker-handbrake
+
+developer: jlesage
+website: https://github.com/jlesage/docker-handbrake
+submitter: Mattnet
+submission: https://github.com/ChuChuCharlie/mattnet-umbrel-community-app-store/mattnet-handbrake
+repo: https://github.com/ChuChuCharlie/mattnet-umbrel-community-app-store
+support: https://github.com/ChuChuCharlie/mattnet-umbrel-community-app-store/issues
+gallery: []
+releaseNotes: >-
+  Initial release of HandBrake for Umbrel.
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
