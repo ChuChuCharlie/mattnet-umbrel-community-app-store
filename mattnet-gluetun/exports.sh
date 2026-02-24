@@ -1,7 +1,36 @@
-export VPN_SERVICE_PROVIDER="private internet access"
-export VPN_TYPE="wireguard"
+#Many of these variables are optional and only needed for specific VPN service providers or VPN types. Please refer to the GlueTun Wiki (https://github.com/qdm12/gluetun-wiki/) for more details on which variables are required for your specific use case.
+
+#To access the tunnelled application, you need to direct a port via Gluetun to the app.
+#For example, qBittorrent's web UI runs on port 8080 by default, so you would set APP_TCP_PORT to 8080 and GLUETUN_TCP_PORT to the port you want to access qBittorrent on (e.g. 4000). Then you would access the qBittorrent web UI at http://umbrel-ip:4000.
+export GLUETUN_TCP_PORT_1="your gluetun tcp port, example: 4000"
+export GLUETUN_UDP_PORT_1="your gluetun udp port. example: 4000"
+export APP_TCP_PORT_1="your app tcp port, example: 8080 for qBittorrent's web UI"
+export APP_UDP_PORT_1="your app udp port, example: 8080 for qBittorrent's web UI"
+export GLUETUN_TCP_PORT_2="your gluetun tcp port"
+export GLUETUN_UDP_PORT_2="your gluetun udp port"
+export APP_TCP_PORT_2="your app tcp port"
+export APP_UDP_PORT_2="your app udp port"
+#etc, etc for as many ports as you need to direct through the tunnelled application. Also update the docker-compose.yml file to include the ports you want to direct through the tunnelled application.
+
+export VPN_SERVICE_PROVIDER="airvpn, mullvad, nordvpn etc"
+export VPN_TYPE="openvpn or wireguard"
+export VPN_INTERFACE="VPN interface name e.g. tun0"
+export OPENVPN_USER="your openvpn username"
+export OPENVPN_PASSWORD="your openvpn password"
+export OPENVPN_ENDPOINT_IP="your openvpn endpoint ip"
+export OPENVPN_ENDPOINT_PORT="your openvpn endpoint port"
 export WIREGUARD_PRIVATE_KEY="your wireguard private key"
 export WIREGUARD_PRESHARED_KEY="your wireguard preshared key"
 export WIREGUARD_ADDRESSES="your wireguard address"
+export WIREGUARD_PUBLIC_KEY="your wireguard public key"
+export WIREGUARD_ENDPOINT_IP="your wireguard endpoint ip"
+export WIREGUARD_ENDPOINT_PORT="your wireguard endpoint port"
+export WIREGUARD_ALLOWED_IPS="your wireguard allowed ips"
+export WIREGUARD_IMPLEMENTATION="your wireguard implementation e.g. userspace or kernel"
 export WIREGUARD_MTU="your wireguard mtu"
+export WIREGUARD_PERSISTENT_KEEPALIVE_INTERVAL="your wireguard persistent keepalive interval"
 export SERVER_COUNTRIES="your server countries"
+export SERVER_REGIONS="your server regions"
+export SERVER_CITIES="your server cities"
+export SERVER_NAMES="your server names"
+export SERVER_HOSTNAMES="your server hostnames"
