@@ -133,3 +133,11 @@ services:
     network_mode: container:gluetun_server_1
     container_name: qbittorrent_server_1
 ```
+
+You can't access qBittorrent using the app icon, but you can change the port to 3000
+
+e.g. http://umbrel.local:3000
+
+You can verify it's working by checking the logs (View->Log, and then on the right side clicking 'Execution log'. The external IP should be detected and not be your IP).
+
+If any other apps use your VPN'ed app they need telling about the change. Example, Radarr/Sonarr under Settings->Download Clients, select qBittorrent and change the host and port.
