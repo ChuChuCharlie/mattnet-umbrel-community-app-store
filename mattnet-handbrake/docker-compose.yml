@@ -17,4 +17,3 @@ services:
       - ${APP_DATA_DIR}/data/watch:/watch:rw
       - ${APP_DATA_DIR}/data/output:/output:rw
       - ${APP_DATA_DIR}/data/trash:/trash:rw
-    environment:
