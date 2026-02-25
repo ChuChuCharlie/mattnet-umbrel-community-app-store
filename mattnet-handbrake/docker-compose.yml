@@ -12,8 +12,8 @@ services:
       jlesage/handbrake
     container_name: handbrake_server_1
     volumes:
-      - ${APP_DATA_DIR}/data/config:/config:rw
-      - ${APP_DATA_DIR}/data/storage:/storage:ro
-      - ${APP_DATA_DIR}/data/watch:/watch:rw
-      - ${APP_DATA_DIR}/data/output:/output:rw
-      - ${APP_DATA_DIR}/data/trash:/trash:rw
+      - ${APP_DATA_DIR}/data/config:/config
+      - ${APP_DATA_DIR}/data/storage:/storage
+      - ${APP_DATA_DIR}/data/watch:/watch
+      - ${APP_DATA_DIR}/data/output:/output
+      - ${APP_DATA_DIR}/data/trash:/trash
