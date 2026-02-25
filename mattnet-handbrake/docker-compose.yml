@@ -19,5 +19,3 @@ services:
       - ${APP_DATA_DIR}/data/trash:/trash
     environment:
       - INSTALL_PACKAGES: linux-firmware-amdgpu
-    devices:
-      - /dev/dri:/dev/dri
