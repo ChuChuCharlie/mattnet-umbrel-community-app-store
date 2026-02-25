@@ -17,9 +17,8 @@ services:
       - /downloads/handbrakewatch:/watch
       - /downloads/handbrakeoutput:/output
       - ${APP_DATA_DIR}/data/trash:/trash
+      - /sys/module/amdgpu:/sys/module/amdgpu
     environment:
       - INSTALL_PACKAGES: linux-firmware-amdgpu
     devices:
       - /dev/dri:/dev/dri
-    volumes:
-      - /sys/module/amdgpu:/sys/module/amdgpu
