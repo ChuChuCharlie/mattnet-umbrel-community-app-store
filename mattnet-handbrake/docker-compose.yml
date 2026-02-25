@@ -13,7 +13,13 @@ services:
     container_name: handbrake_server_1
     volumes:
       - ${APP_DATA_DIR}/data/config:/config
-      - ${APP_DATA_DIR}/data/storage:/storage
-      - ${APP_DATA_DIR}/data/watch:/watch
-      - ${APP_DATA_DIR}/data/output:/output
+      - /downloads:/storage
+      - /downloads/handbrakewatch:/watch
+      - /downloads/handbrakeoutput:/output
       - ${APP_DATA_DIR}/data/trash:/trash
+    environment:
+      - INSTALL_PACKAGES: linux-firmware-amdgpu
+    devices:
+      - /dev/dri:/dev/dri
+    volumes:
+      - /sys/module/ammgpu:/sys/module/ammgpu
