@@ -22,4 +22,4 @@ services:
     devices:
       - /dev/dri:/dev/dri
     volumes:
-      - /sys/module/ammgpu:/sys/module/ammgpu
+      - /sys/module/amdgpu:/sys/module/amdgpu
