@@ -31,6 +31,6 @@ services:
     image: serjs/go-socks5-proxy
     user: '1000:1000'
     container_name: gluetun_socks5_proxy_1
-    network_mode: service:gluetun_server_1
+    network_mode: container:gluetun_server_1
     environment:
       - REQUIRE_AUTH=false
