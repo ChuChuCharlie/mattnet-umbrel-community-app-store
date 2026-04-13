@@ -3,7 +3,7 @@ services:
   app_proxy:
     environment:
       APP_HOST: gluetun_server_1
-      APP_PORT: 3000
+      APP_PORT: 8000
     container_name: gluetun_app_proxy_1
   app:
     image: qmcgaw/gluetun
@@ -13,7 +13,10 @@ services:
     devices:
       - /dev/net/tun:/dev/net/tun
     user: '1000:1000'
+    volumes:
+      - ${UMBREL_ROOT}/home/Downloads/wg0.conf:/gluetun/wireguard/wg0.conf:ro
     ports:
+      - 8000:8000/tcp
       - 1080:1080/tcp
       - 1080:1080/udp
       - 8888:8888/tcp
@@ -22,31 +25,12 @@ services:
       - PGID=1000
       - VPN_SERVICE_PROVIDER=${VPN_SERVICE_PROVIDER}
       - VPN_TYPE=${VPN_TYPE}
-      - VPN_INTERFACE=${VPN_INTERFACE}
-      - OPENVPN_USER=${OPENVPN_USER}
-      - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
-      - OPENVPN_ENDPOINT_IP=${OPENVPN_ENDPOINT_IP}
-      - OPENVPN_ENDPOINT_PORT=${OPENVPN_ENDPOINT_PORT}
-      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY}
-      - WIREGUARD_PRESHARED_KEY=${WIREGUARD_PRESHARED_KEY}
-      - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES}
-      - WIREGUARD_PUBLIC_KEY=${WIREGUARD_PUBLIC_KEY}
-      - WIREGUARD_ENDPOINT_IP=${WIREGUARD_ENDPOINT_IP}
-      - WIREGUARD_ENDPOINT_PORT=${WIREGUARD_ENDPOINT_PORT}
-      - WIREGUARD_ALLOWED_IPS=${WIREGUARD_ALLOWED_IPS}
-      - WIREGUARD_IMPLEMENTATION=${WIREGUARD_IMPLEMENTATION}
-      - WIREGUARD_MTU=${WIREGUARD_MTU}
-      - WIREGUARD_PERSISTENT_KEEPALIVE_INTERVAL=${WIREGUARD_PERSISTENT_KEEPALIVE_INTERVAL}
-      - SERVER_COUNTRIES=${SERVER_COUNTRIES}
-      - SERVER_REGIONS=${SERVER_REGIONS}
-      - SERVER_CITIES=${SERVER_CITIES}
-      - SERVER_NAMES=${SERVER_NAMES}
-      - SERVER_HOSTNAMES=${SERVER_HOSTNAMES}
+      - SERVER_COUNTRIES="Austria, Belgium, Brazil, Bulgaria, Canada, Czech Republic, Estonia, Germany, Ireland, Japan, Latvia, Netherlands, New Zealand, Norway, Romania, Serbia, Singapore, Spain, Sweden, Switzerland, United Kingdom, United States"
       - HTTPPROXY=on
   socks5:
     image: serjs/go-socks5-proxy
     user: '1000:1000'
     container_name: gluetun_socks5_proxy_1
-    network_mode: container:gluetun_server_1
+    network_mode: service:gluetun_server_1
     environment:
       - REQUIRE_AUTH=false
