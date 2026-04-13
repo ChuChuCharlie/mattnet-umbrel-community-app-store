@@ -1,24 +1,22 @@
-version: "3.7"
-
+version: '3.7'
 services:
-
   app_proxy:
     environment:
       APP_HOST: gluetun_server_1
       APP_PORT: 3000
     container_name: gluetun_app_proxy_1
-  server:
-    image: >-
-      qmcgaw/gluetun
+  app:
+    image: qmcgaw/gluetun
     container_name: gluetun_server_1
     cap_add:
       - NET_ADMIN
     devices:
       - /dev/net/tun:/dev/net/tun
+    user: '1000:1000'
     ports:
-      - ${GLUETUN_TCP_PORT_1}
-      - ${GLUETUN_UDP_PORT_1}
-      - ${GLUETUN_TCP_PORT_2}
+      - 1080:1080/tcp
+      - 1080:1080/udp
+      - 8888:8888/tcp
     environment:
       - PUID=1000
       - PGID=1000
@@ -44,3 +42,11 @@ services:
       - SERVER_CITIES=${SERVER_CITIES}
       - SERVER_NAMES=${SERVER_NAMES}
       - SERVER_HOSTNAMES=${SERVER_HOSTNAMES}
+      - HTTPPROXY=on
+  socks5:
+    image: serjs/go-socks5-proxy
+    user: '1000:1000'
+    container_name: gluetun_socks5_proxy_1
+    network_mode: container:gluetun_server_1
+    environment:
+      - REQUIRE_AUTH=false
