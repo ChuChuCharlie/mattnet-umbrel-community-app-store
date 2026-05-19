@@ -5,7 +5,7 @@ services:
       APP_HOST: gluetun_server_1
       APP_PORT: 8000
     container_name: gluetun_app_proxy_1
-  app:
+  gluetun:
     image: qmcgaw/gluetun
     container_name: gluetun_server_1
     cap_add:
