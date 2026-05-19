@@ -16,21 +16,21 @@ services:
     volumes:
       - ${UMBREL_ROOT}/home/Downloads/wg0.conf:/gluetun/wireguard/wg0.conf:ro
     ports:
-      - 8000:8000/tcp
-      - 1080:1080/tcp
-      - 1080:1080/udp
-      - 8888:8888/tcp
+      - 1080:1080
     environment:
       - PUID=1000
       - PGID=1000
       - VPN_SERVICE_PROVIDER=${VPN_SERVICE_PROVIDER}
       - VPN_TYPE=${VPN_TYPE}
-      - SERVER_COUNTRIES="Austria, Belgium, Brazil, Bulgaria, Canada, Czech Republic, Estonia, Germany, Ireland, Japan, Latvia, Netherlands, New Zealand, Norway, Romania, Serbia, Singapore, Spain, Sweden, Switzerland, United Kingdom, United States"
-      - HTTPPROXY=on
+      - >-
+        SERVER_COUNTRIES="Austria, Belgium, Brazil, Bulgaria, Canada, Czech
+        Republic, Estonia, Germany, Ireland, Japan, Latvia, Netherlands, New
+        Zealand, Norway, Romania, Serbia, Singapore, Spain, Sweden, Switzerland,
+        United Kingdom, United States"
   socks5:
     image: serjs/go-socks5-proxy
     user: '1000:1000'
     container_name: gluetun_socks5_proxy_1
-    network_mode: container:gluetun_server_1
+    network_mode: "container:gluetun_server_1"
     environment:
       - REQUIRE_AUTH=false
