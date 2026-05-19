@@ -7,8 +7,8 @@ export GLUETUN_UDP_PORT_1="your gluetun udp port:app UDP port, example: 3000:808
 export GLUETUN_TCP_PORT_2="your gluetun tcp port:app TCP port, example: 3001:8094/tcp"
 #etc, etc for as many ports as you need to direct through the tunnelled application. Also update the docker-compose.yml file to include the ports you want to direct through the tunnelled application.
 
-export VPN_SERVICE_PROVIDER="airvpn, mullvad, nordvpn etc"
-export VPN_TYPE="openvpn or wireguard"
+export VPN_SERVICE_PROVIDER="airvpn"#"airvpn, mullvad, nordvpn etc"
+export VPN_TYPE="wireguard"#"openvpn or wireguard"
 export VPN_INTERFACE="VPN interface name e.g. tun0"
 export OPENVPN_USER="your openvpn username"
 export OPENVPN_PASSWORD="your openvpn password"
