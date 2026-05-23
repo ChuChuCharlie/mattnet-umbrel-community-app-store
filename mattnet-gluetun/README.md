@@ -1,4 +1,47 @@
-## Gluetun for UmbrelOS
+None of the below is needed if you want to VPN qBittorrent, the docker build includes VPN support! The docker.compose.yml for qBittorrent needs to be modified
+
+```
+version: '3.7'
+services:
+  app_proxy:
+    environment:
+      APP_HOST: qbittorrent_server_1
+      APP_PORT: 8080
+      PROXY_AUTH_ADD: 'true'
+      PROXY_AUTH_WHITELIST: /api/*
+    container_name: qbittorrent_app_proxy_1
+  server:
+    image: >-
+      ghcr.io/hotio/qbittorrent:release-5.x.x@sha256:1234....
+    cap_add:                                             #NEW ADD THIS
+      - NET_ADMIN                                        #NEW ADD THIS
+    ports:                                               #NEW ADD THIS
+      - 8118:8118/tcp                                    #NEW ADD THIS
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VPN_ENABLED=true                                 #NEW ADD THIS
+      - VPN_CONF=wg0                                     #NEW ADD THIS
+      - VPN_PROVIDER=generic                             #NEW ADD THIS
+      - VPN_LAN_NETWORK=192.168.1.0/24                   #NEW ADD THIS
+      - VPN_LAN_LEAK_ENABLED=false                       #NEW ADD THIS
+      - VPN_EXPOSE_PORTS_ON_LAN=8118/tcp,8094/tcp        #NEW ADD THIS
+      - PRIVOXY_ENABLED=true                             #NEW ADD THIS
+    hostname: qbittorrent_vpn_1.internal                 #NEW ADD THIS
+    volumes:
+      - ${APP_DATA_DIR}/data/config:/config
+      - ${UMBREL_ROOT}/home/Downloads:/downloads
+      - ${UMBREL_ROOT}/home/Downloads:/config/wireguard  #NEW ADD THIS
+    restart: on-failure
+    container_name: qbittorrent_server_1
+
+```
+Make sure there is a wireguard config file for your provider in Downloads called wg0.conf
+With this setup, you can point other apps proxy server to port 8118 to make use of the VPN too
+
+See https://hotio.dev/containers/qbittorrent/ for info and more options
+
+~~## Gluetun for UmbrelOS
 
 This is an unofficial kludge to bring Gluetun support to allow Umbrel containers to work over VPN tunnels.
 
@@ -130,7 +173,7 @@ services:
 
 You can't access qBittorrent using the app icon, but you can change the port to 3000
 
-e.g. http://umbrel.local:3000
+e.g. http://umbrel.local:3000~~
 
 You can verify it's working by checking the logs (View->Log, and then on the right side clicking 'Execution log'. The external IP should be detected and not be your IP).
 
