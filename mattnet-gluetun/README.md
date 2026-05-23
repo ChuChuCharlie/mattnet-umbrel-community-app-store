@@ -41,114 +41,114 @@ With this setup, you can point other apps proxy server to port 8118 to make use 
 
 See https://hotio.dev/containers/qbittorrent/ for info and more options
 
-~~## Gluetun for UmbrelOS
+~~## Gluetun for UmbrelOS~~
 
-This is an unofficial kludge to bring Gluetun support to allow Umbrel containers to work over VPN tunnels.
+~~This is an unofficial kludge to bring Gluetun support to allow Umbrel containers to work over VPN tunnels.~~
 
-This is a best endevour project, and works for me but YMMV. Note this breaks the container DNS, so other apps may need updating. See the example below.
+~~This is a best endevour project, and works for me but YMMV. Note this breaks the container DNS, so other apps may need updating. See the example below.~~
 
-I'd love to include a simple web form or something that allows the user to enter their variables based on the VPN type/provider selected, but I'm not smart enough to come up with something like that so you have to do it by editing the configs yourself.
+~~I'd love to include a simple web form or something that allows the user to enter their variables based on the VPN type/provider selected, but I'm not smart enough to come up with something like that so you have to do it by editing the configs yourself.~~
 
-## How to use:
+~~## How to use:~~
 
-Install through the community app store.
+~~Install through the community app store.~~
 
-Once installed, open the file 'exports.sh'. You need to set the variables according to your VPN provider, referring to the [Gluetun wiki](https://github.com/qdm12/gluetun-wiki) for specifics.
+~~Once installed, open the file 'exports.sh'. You need to set the variables according to your VPN provider, referring to the [Gluetun wiki](https://github.com/qdm12/gluetun-wiki) for specifics.~~
 
-Edit the docker-compose.yml file. Check that APP_PORT doesn't overlap with anything else running on your Umbrel instance.
+~~Edit the docker-compose.yml file. Check that APP_PORT doesn't overlap with anything else running on your Umbrel instance.~~
 
-If you want to access your tunnelled app after it's been VPN'ed, under ports: add port redirects as required
-E.g. if your app needs inbound TCP/UDP 8080, TCP 80 and TCP 443, you'll need 3 variables in exports.sh:
-```
-    export GLUETUN_TCP_PORT_1="3000:8080/tcp"
+~~If you want to access your tunnelled app after it's been VPN'ed, under ports: add port redirects as required
+E.g. if your app needs inbound TCP/UDP 8080, TCP 80 and TCP 443, you'll need 3 variables in exports.sh:~~
+~~```~~
+    ~~export GLUETUN_TCP_PORT_1="3000:8080/tcp"
     export GLUETUN_UDP_PORT_1="3000:8080/udp"
     export GLUETUN_TCP_PORT_2="3001/80"
-    export GLUETUN_TCP_PORT_3="3002/443"
-```
-And then in docker-compose.yml:
-```
-    ports:
+    export GLUETUN_TCP_PORT_3="3002/443"~~
+~~```~~
+~~##And then in docker-compose.yml:~~
+~~```~~
+    ~~ports:
       - ${GLUETUN_TCP_PORT_1}
       - ${GLUETUN_UDP_PORT_1}
       - ${GLUETUN_TCP_PORT_2}
-      - ${GLUETUN_TCP_PORT_3}
-```
-Restart the Gluetun app by right clicking it (or, open the terminal and run 'umbreld client apps.restart.mutate --appId mattnet-gluetun')
+      - ${GLUETUN_TCP_PORT_3}~~
+~~```
+Restart the Gluetun app by right clicking it (or, open the terminal and run 'umbreld client apps.restart.mutate --appId mattnet-gluetun')~~
 
-You now need to tell the app you want to run through VPN to use the Gluetun container. This means editing the docker-compose.yml FOR THAT APP and adding this line
-```
-    server:
-      ...
-      network_mode: container:gluetun_server_1
-```
+~~You now need to tell the app you want to run through VPN to use the Gluetun container. This means editing the docker-compose.yml FOR THAT APP and adding this line~~
+~~```~~
+    ~~server:~~
+      ~~...~~
+      ~~network_mode: container:gluetun_server_1~~
+~~```~~
 
-EXAMPLE SETUP FOR QBITTORRENT
+~~EXAMPLE SETUP FOR QBITTORRENT~~
 
-This is my config for how I set up qBittorrent, which seems to be working
+~~This is my config for how I set up qBittorrent, which seems to be working~~
 
-exports.sh
+~~exports.sh~~
 
-```
-export GLUETUN_TCP_PORT_1="3000:8080/tcp"
-export GLUETUN_UDP_PORT_1="3000:8080/udp"
+~~```~~
+~~export GLUETUN_TCP_PORT_1="3000:8080/tcp"~~
+~~export GLUETUN_UDP_PORT_1="3000:8080/udp"~~
 
-export VPN_SERVICE_PROVIDER="airvpn"
-export VPN_TYPE="wireguard"
-#export VPN_INTERFACE="VPN interface name e.g. tun0"
-#export OPENVPN_USER="your openvpn username"
-#export OPENVPN_PASSWORD="your openvpn password"
-#export OPENVPN_ENDPOINT_IP="your openvpn endpoint ip"
-#export OPENVPN_ENDPOINT_PORT="your openvpn endpoint port"
-export WIREGUARD_PRIVATE_KEY="abcd1234privatekey"
-export WIREGUARD_PRESHARED_KEY="abcd1234presharedkey"
-export WIREGUARD_ADDRESSES="1.2.3.4/32"
-#export WIREGUARD_PUBLIC_KEY="your wireguard public key"
-#export WIREGUARD_ENDPOINT_IP="your wireguard endpoint ip"
-#export WIREGUARD_ENDPOINT_PORT="your wireguard endpoint port"
-#export WIREGUARD_ALLOWED_IPS="your wireguard allowed ips"
-#export WIREGUARD_IMPLEMENTATION="your wireguard implementation e.g. userspace or kernel"
-export WIREGUARD_MTU="1320"
-#export WIREGUARD_PERSISTENT_KEEPALIVE_INTERVAL="your wireguard persistent keepalive interval"
-export SERVER_COUNTRIES="Austria, Belgium"
-#export SERVER_REGIONS="your server regions"
-#export SERVER_CITIES="your server cities"
-#export SERVER_NAMES="your server names"
-#export SERVER_HOSTNAMES="your server hostnames"
-```
+~~export VPN_SERVICE_PROVIDER="airvpn"~~
+~~export VPN_TYPE="wireguard"~~
+~~#export VPN_INTERFACE="VPN interface name e.g. tun0"~~
+~~#export OPENVPN_USER="your openvpn username"~~
+~~#export OPENVPN_PASSWORD="your openvpn password"~~
+~~#export OPENVPN_ENDPOINT_IP="your openvpn endpoint ip"~~
+~~#export OPENVPN_ENDPOINT_PORT="your openvpn endpoint port"~~
+~~export WIREGUARD_PRIVATE_KEY="abcd1234privatekey"~~
+~~export WIREGUARD_PRESHARED_KEY="abcd1234presharedkey"~~
+~~export WIREGUARD_ADDRESSES="1.2.3.4/32"~~
+~~#export WIREGUARD_PUBLIC_KEY="your wireguard public key"~~
+~~#export WIREGUARD_ENDPOINT_IP="your wireguard endpoint ip"~~
+~~#export WIREGUARD_ENDPOINT_PORT="your wireguard endpoint port"~~
+~~#export WIREGUARD_ALLOWED_IPS="your wireguard allowed ips"~~
+~~#export WIREGUARD_IMPLEMENTATION="your wireguard implementation e.g. userspace or kernel"~~
+~~export WIREGUARD_MTU="1320"~~
+~~#export WIREGUARD_PERSISTENT_KEEPALIVE_INTERVAL="your wireguard persistent keepalive interval"~~
+~~export SERVER_COUNTRIES="Austria, Belgium"~~
+~~#export SERVER_REGIONS="your server regions"~~
+~~#export SERVER_CITIES="your server cities"~~
+~~#export SERVER_NAMES="your server names"~~
+~~#export SERVER_HOSTNAMES="your server hostnames"~~
+~~```~~
 
-mattnet-gluetun/docker-compose.yml
-```
-version: '3.7'
-services:
-  app_proxy:
-    environment:
-      APP_HOST: gluetun_server_1
-      APP_PORT: 3000
-    container_name: gluetun_app_proxy_1
-  server:
-    image: qmcgaw/gluetun
-    container_name: gluetun_server_1
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - /dev/net/tun:/dev/net/tun
-    ports:
-      - ${GLUETUN_TCP_PORT_1}
-      - ${GLUETUN_UDP_PORT_1}
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - VPN_SERVICE_PROVIDER=${VPN_SERVICE_PROVIDER}
-      - VPN_TYPE=${VPN_TYPE}
-      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY}
-      - WIREGUARD_PRESHARED_KEY=${WIREGUARD_PRESHARED_KEY}
-      - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES}
-      - WIREGUARD_MTU=${WIREGUARD_MTU}
-      - SERVER_COUNTRIES=${SERVER_COUNTRIES}
-```
+~~mattnet-gluetun/docker-compose.yml~~
+~~```~~
+~~version: '3.7'~~
+~~services:~~
+  ~~app_proxy:
+    ~~environment:
+      ~~APP_HOST: gluetun_server_1
+      ~~APP_PORT: 3000
+    ~~container_name: gluetun_app_proxy_1
+  ~~server:
+    ~~image: qmcgaw/gluetun
+    ~~container_name: gluetun_server_1
+    ~~cap_add:
+      ~~- NET_ADMIN
+    ~~devices:
+      ~~- /dev/net/tun:/dev/net/tun
+    ~~ports:
+      ~~- ${GLUETUN_TCP_PORT_1}
+      ~~- ${GLUETUN_UDP_PORT_1}
+    ~~environment:
+      ~~- PUID=1000
+      ~~- PGID=1000
+      ~~- VPN_SERVICE_PROVIDER=${VPN_SERVICE_PROVIDER}
+      ~~- VPN_TYPE=${VPN_TYPE}
+      ~~- WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY}
+      ~~- WIREGUARD_PRESHARED_KEY=${WIREGUARD_PRESHARED_KEY}
+      ~~- WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES}
+      ~~- WIREGUARD_MTU=${WIREGUARD_MTU}
+      ~~- SERVER_COUNTRIES=${SERVER_COUNTRIES}
+~~```~~
 
-qBittorrent/docker-compose.yml
-```
+~~qBittorrent/docker-compose.yml~~
+~~```
 version: '3.7'
 services:
   app_proxy:
@@ -169,12 +169,12 @@ services:
     restart: on-failure
     network_mode: container:gluetun_server_1
     container_name: qbittorrent_server_1
-```
+~~```~~
 
-You can't access qBittorrent using the app icon, but you can change the port to 3000
+~~You can't access qBittorrent using the app icon, but you can change the port to 3000~~
 
-e.g. http://umbrel.local:3000~~
+~~e.g. http://umbrel.local:3000~~
 
-You can verify it's working by checking the logs (View->Log, and then on the right side clicking 'Execution log'. The external IP should be detected and not be your IP).
+~~You can verify it's working by checking the logs (View->Log, and then on the right side clicking 'Execution log'. The external IP should be detected and not be your IP).~~
 
-If any other apps use your VPN'ed app they need telling about the change. Example, Radarr/Sonarr under Settings->Download Clients, select qBittorrent and change the host and port.
+~~If any other apps use your VPN'ed app they need telling about the change. Example, Radarr/Sonarr under Settings->Download Clients, select qBittorrent and change the host and port.~~
