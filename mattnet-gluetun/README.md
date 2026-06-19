@@ -17,6 +17,7 @@ services:
       - NET_ADMIN                                        #NEW ADD THIS
     ports:                                               #NEW ADD THIS
       - 8118:8118/tcp                                    #NEW ADD THIS
+      - xxxxx:xxxxx                                      #NEW-For forwarded port from VPN provider
     environment:
       - PUID=1000
       - PGID=1000
